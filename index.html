@@ -294,6 +294,58 @@
       font-size: 0.94rem;
     }
 
+
+    .experience-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 38px;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 34px;
+      align-items: stretch;
+    }
+    .experience-meta {
+      background: linear-gradient(145deg, #6d4aff, #4530a8);
+      color: white;
+      border-radius: 22px;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 300px;
+    }
+    .experience-meta .project-index { color: rgba(255,255,255,.78); }
+    .experience-meta h3 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+    }
+    .experience-meta p { color: rgba(255,255,255,.76); font-size: .92rem; }
+    .experience-content { display: grid; gap: 22px; align-content: center; }
+    .experience-content > p { color: var(--muted); }
+    .experience-highlights {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .experience-highlight {
+      padding: 21px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: #fbfcfe;
+    }
+    .experience-highlight span {
+      display: block;
+      color: var(--primary);
+      font-size: .78rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .experience-highlight h4 { font-size: 1.03rem; margin-bottom: 7px; }
+    .experience-highlight p { color: var(--muted); font-size: .9rem; }
+
     .project-list {
       display: grid;
       gap: 30px;
@@ -497,7 +549,6 @@
     }
 
     .flow-step:not(:last-child)::after {
-      content: "→";
       position: absolute;
     }
 
@@ -639,6 +690,7 @@
       }
 
       .hero-grid,
+      .experience-card,
       .project-top,
       .closing-card {
         grid-template-columns: 1fr;
@@ -679,7 +731,8 @@
       .strength-grid,
       .skills-grid,
       .feature-grid,
-      .problem-solution {
+      .problem-solution,
+      .experience-highlights {
         grid-template-columns: 1fr;
       }
 
@@ -732,6 +785,7 @@
       <a class="brand" href="#top">JEONGHWAN<span>.DEV</span></a>
       <div class="nav-links">
         <a href="#about">About</a>
+        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#growth">Growth</a>
         <a href="#skills">Skills</a>
@@ -749,10 +803,11 @@
             <strong>동작하는 결과</strong>로 해결합니다.
           </h1>
           <p class="hero-copy">
-            Flutter와 Firebase로 시작해 React와 Spring Boot 기반 풀스택 개발,
+            스타트업에서 웹 운영과 메타버스 게임 개발을 경험한 뒤,
+            Flutter와 Firebase, React와 Spring Boot 기반 풀스택 개발,
             AWS 배포, 크롤링 안정화, 알림 동시성 문제 해결까지 경험했습니다.
-            최근에는 AI 에이전트를 단순한 코드 생성기가 아니라
-            <b>계획·개발·검증·평가가 반복되는 개발 시스템</b> 안에서 활용하고 있습니다.
+            최근에는 AI 에이전트를
+            <b>계획-개발-검증-평가가 반복되는 개발 시스템</b> 안에서 활용하고 있습니다.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#projects">프로젝트 보기</a>
@@ -764,6 +819,10 @@
           <div class="profile-label">Profile</div>
           <div class="profile-name">이정환</div>
           <div class="profile-list">
+	    <div class="profile-row">
+              <span>학교</span>
+              <strong>아주대학교</strong>
+            </div>
             <div class="profile-row">
               <span>전공</span>
               <strong>소프트웨어학과</strong>
@@ -801,7 +860,7 @@
             <div class="strength-number">01</div>
             <h3>풀스택 구현 경험</h3>
             <p>
-              Flutter·Firebase 모바일 앱부터 React·Spring Boot 웹 서비스까지
+              Flutter와 Firebase을 활용한 모바일 앱으로 시작해 React와 Spring Boot를 활용한 웹 서비스까지
               화면, 상태 관리, API, 데이터베이스를 직접 연결했습니다.
             </p>
           </article>
@@ -825,11 +884,69 @@
       </div>
     </section>
 
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">WORK EXPERIENCE</div>
+          <h2>아이디어를 빠르게 기능으로 전환하고,<br />운영 중인 서비스를 개선했습니다.</h2>
+        </div>
+
+        <article class="experience-card">
+          <div class="experience-meta">
+            <div class="project-index">STARTUP · DEVELOPMENT PART-TIME</div>
+            <div>
+              <h3>Timing4All</h3>
+              <p>웹 운영 및 메타버스 플랫폼 개발</p>
+            </div>
+            <div class="project-period">2023.08 — 2024.02</div>
+          </div>
+
+          <div class="experience-content">
+            <div>
+              <div class="project-type">스타트업 개발 아르바이트</div>
+              <h3 style="font-size:clamp(1.55rem,3vw,2.35rem); line-height:1.25; letter-spacing:-0.035em; margin-bottom:14px;">
+                새로운 기술을 빠르게 학습하고 아이디어를 구현해 검증한 실무 경험
+              </h3>
+              <p>
+                기존 웹서비스의 운영 및 유지보수와 메타버스 플랫폼 개발을 담당했습니다.
+                임원진과 컨텐츠팀에서 제안된 아이디어를 구현 가능한 기능으로 구체화하고, 빠르게 프로토타입을 만든 뒤
+                피드백을 반영해 수정하는 반복적인 개발 과정을 경험했습니다.
+              </p>
+            </div>
+
+            <div class="experience-highlights">
+              <div class="experience-highlight">
+                <span>OPERATIONS</span>
+                <h4>웹서비스 운영 및 유지보수</h4>
+                <p>기존 기능에 미치는 영향을 고려하며 오류와 개선 요구사항에 대응했습니다.</p>
+              </div>
+              <div class="experience-highlight">
+                <span>DEVELOPMENT</span>
+                <h4>메타버스 플랫폼 개발</h4>
+                <p>필요한 기술을 빠르게 학습하고 실제 기능에 적용하는 경험을 쌓았습니다.</p>
+              </div>
+              <div class="experience-highlight">
+                <span>PROTOTYPING</span>
+                <h4>아이디어의 기능화</h4>
+                <p>추상적인 아이디어를 구현 가능한 단위로 정리하고 프로토타입으로 검증했습니다.</p>
+              </div>
+              <div class="experience-highlight">
+                <span>ITERATION</span>
+                <h4>피드백 기반 반복 개선</h4>
+                <p>구현 결과를 검토받고 수정하며 빠른 실행과 검증의 중요성을 배웠습니다.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section class="section" id="projects">
       <div class="container">
         <div class="section-heading">
           <div class="section-kicker">SELECTED PROJECTS</div>
-          <h2>경험의 최신성과 직무 연관성을 기준으로<br />세 프로젝트를 구성했습니다.</h2>
+          <h2>풀스택 개발 역량과 문제 해결 과정을<br />담은 세 프로젝트입니다.</h2>
         </div>
 
         <div class="project-list">
@@ -842,7 +959,7 @@
               </div>
 
               <div class="project-summary">
-                <div class="project-type">대표 프로젝트 · 시연 가능</div>
+                <div class="project-type">대표 프로젝트</div>
                 <h4>에이전틱 엔지니어링을 적용한 교양서 추천 및 독서 성장 서비스</h4>
                 <p>
                   사용자의 관심 분야, 독서 목적, 읽은 책과 저장한 책을 바탕으로
@@ -869,7 +986,7 @@
                     <li>관심 분야와 독서 목적 기반 추천</li>
                     <li>읽은 책, 저장한 책, 관심 없는 책 관리</li>
                     <li>독서 성장 점수와 대표 배지</li>
-                    <li>책·게시글·사용자 통합 검색</li>
+                    <li>책, 게시글, 사용자 통합 검색</li>
                   </ul>
                 </div>
                 <div class="feature-box">
@@ -878,7 +995,7 @@
                   <ul>
                     <li>사용자가 직접 공개한 활동만 피드에 노출</li>
                     <li>공개 여부와 계정 상태를 백엔드에서 강제</li>
-                    <li>탈퇴·숨김·차단 정책을 검색과 피드에 공통 적용</li>
+                    <li>탈퇴, 숨김, 차단 정책을 검색과 피드에 공통 적용</li>
                     <li>좋아요와 추천 히스토리의 멱등성 보장</li>
                   </ul>
                 </div>
@@ -889,16 +1006,17 @@
                   <div class="ps-label">PROBLEM</div>
                   <h6>AI 에이전트가 요청하지 않은 파일까지 수정</h6>
                   <p>
-                    기능 구현 속도는 높았지만 작업 범위를 벗어난 변경과 기존 기능의
-                    회귀 오류가 발생해, 긴 프롬프트만으로는 안정적인 통제가 어려웠습니다.
+                    기능 구현 속도는 높았지만 작업 범위를 벗어난 변경과 추측성 답변을 자주
+                    제시하는 부분에 대해 긴 프롬프트만으로는 안정적인 통제가 어려웠습니다.
                   </p>
                 </div>
                 <div class="ps-card solution">
                   <div class="ps-label">SOLUTION</div>
-                  <h6>계획·개발·검증·평가 하네스 루프</h6>
+                  <h6>계획-개발-검증-평가 하네스 루프</h6>
                   <p>
-                    역할과 수정 범위를 분리하고, 프론트 빌드와 백엔드 테스트를 완료
+                    역할과 수정 범위를 분리하고 프론트 빌드와 백엔드 테스트를 완료
                     조건으로 명시했습니다. 검증에 실패하면 개발 단계로 돌아가도록 구성했습니다.
+		    또한, 평가에서 계획과 구현 과정에서의 차이와 위험도 분석을 통해 코드 작업에서의 오류를 최소화하고자 하였습니다.
                   </p>
                 </div>
               </div>
@@ -906,9 +1024,9 @@
               <div class="flow" aria-label="에이전틱 개발 루프">
                 <div class="flow-step">요구사항 분석</div>
                 <div class="flow-step">수정 범위 계획</div>
-                <div class="flow-step">프론트·백 개발</div>
-                <div class="flow-step">빌드·테스트</div>
-                <div class="flow-step">평가·재수정</div>
+                <div class="flow-step">프론트, 백 개발</div>
+                <div class="flow-step">빌드, 테스트</div>
+                <div class="flow-step">평가, 재수정</div>
               </div>
             </div>
           </article>
@@ -951,7 +1069,7 @@
                     <li>마이페이지 CRUD API</li>
                     <li>쇼핑몰 상품 정보 크롤링</li>
                     <li>24시간 후 냉동 만료 알림 생성</li>
-                    <li>알림 목록·미열람 수·읽음 처리 API</li>
+                    <li>알림 목록, 미열람 수, 읽음 처리 API</li>
                   </ul>
                 </div>
                 <div class="feature-box">
@@ -1050,7 +1168,7 @@
                   <ul>
                     <li>Provider를 통한 목록과 지도 상태 동기화</li>
                     <li>Firebase 데이터 저장과 조회</li>
-                    <li>Android·iOS 지도 및 위치 권한 설정</li>
+                    <li>Android, iOS 지도 및 위치 권한 설정</li>
                     <li>AI 생성 코드를 직접 검증하고 수정한 경험</li>
                   </ul>
                 </div>
@@ -1084,10 +1202,19 @@
       <div class="container">
         <div class="section-heading">
           <div class="section-kicker">GROWTH JOURNEY</div>
-          <h2>프로젝트마다 더 넓은 범위의 문제를<br />직접 해결해 왔습니다.</h2>
+          <h2>실무 경험에서 시작해 더 넓은 범위의 문제를<br />직접 해결해 왔습니다.</h2>
         </div>
 
         <div class="growth-line">
+          <article class="growth-item">
+            <div class="growth-dot"></div>
+            <div class="growth-content">
+              <span>2023—2024 · Timing4All</span>
+              <h3>아이디어를 빠르게 기능으로 전환하는 개발</h3>
+              <p>스타트업에서 웹 운영과 메타버스 플랫폼 개발을 경험하며, 새로운 기술을 빠르게 학습하고 구현 결과를 피드백으로 검증하는 과정을 배웠습니다.</p>
+            </div>
+          </article>
+
           <article class="growth-item">
             <div class="growth-dot"></div>
             <div class="growth-content">
@@ -1191,8 +1318,8 @@
             </p>
           </div>
           <div class="contact-box">
-            <span>GitHub · https://github.com/ljh8450</span>
-            <span>Email · ljh8450@ajou.ac.kr</span>
+            <a href="https://github.com/ljh8450" target="_blank" rel="noopener noreferrer">GitHub · github.com/ljh8450</a>
+            <a href="mailto:ljh8450@ajou.ac.kr">Email · ljh8450@ajou.ac.kr</a>
           </div>
         </div>
       </div>
