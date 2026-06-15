@@ -1,1 +1,1206 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>React App</title><script defer="defer" src="/static/js/main.fd7fa4f7.js"></script><link href="/static/css/main.b8e102a2.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="이정환 풀스택 개발자 포트폴리오" />
+  <title>이정환 | Full-Stack Developer</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-soft: #eef2f7;
+      --text: #172033;
+      --muted: #667085;
+      --line: #d9e0ea;
+      --primary: #315efb;
+      --primary-dark: #2347c7;
+      --accent: #16a085;
+      --warning: #f59e0b;
+      --shadow: 0 18px 50px rgba(25, 40, 72, 0.09);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(49, 94, 251, 0.1), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      word-break: keep-all;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(244, 246, 249, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(217, 224, 234, 0.75);
+    }
+
+    .nav-inner {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      font-size: 1.08rem;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      min-height: 86vh;
+      display: flex;
+      align-items: center;
+      padding: 90px 0 80px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 0.92rem;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--primary);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 strong {
+      color: var(--primary);
+    }
+
+    .hero-copy {
+      max-width: 730px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+    }
+
+    .hero-copy b {
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      transition: 0.2s ease;
+      background: var(--surface);
+    }
+
+    .button.primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 10px 24px rgba(49, 94, 251, 0.25);
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .profile-card {
+      background: linear-gradient(145deg, #1c2b4b, #273e72);
+      color: white;
+      padding: 34px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      right: -70px;
+      top: -70px;
+    }
+
+    .profile-label {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .profile-name {
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 8px 0 24px;
+    }
+
+    .profile-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .profile-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 12px;
+      font-size: 0.94rem;
+    }
+
+    .profile-row span:first-child {
+      color: rgba(255, 255, 255, 0.58);
+    }
+
+    .section {
+      padding: 105px 0;
+    }
+
+    .section.alt {
+      background: #edf1f7;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+      align-items: start;
+    }
+
+    .section-kicker {
+      color: var(--primary);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.7rem);
+      line-height: 1.13;
+      letter-spacing: -0.045em;
+    }
+
+    .strength-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .strength-card {
+      background: var(--surface);
+      padding: 28px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      min-height: 230px;
+      box-shadow: 0 10px 30px rgba(22, 32, 51, 0.04);
+    }
+
+    .strength-number {
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 0.84rem;
+      margin-bottom: 44px;
+    }
+
+    .strength-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+      letter-spacing: -0.025em;
+    }
+
+    .strength-card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .project-list {
+      display: grid;
+      gap: 30px;
+    }
+
+    .project {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .project-top {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 34px;
+      padding: 38px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-id {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250px;
+      border-radius: 22px;
+      padding: 30px;
+      color: white;
+      background: linear-gradient(145deg, #315efb, #223fbb);
+    }
+
+    .project:nth-child(2) .project-id {
+      background: linear-gradient(145deg, #16a085, #0e6f5e);
+    }
+
+    .project:nth-child(3) .project-id {
+      background: linear-gradient(145deg, #f59e0b, #b56f05);
+    }
+
+    .project-index {
+      font-size: 0.86rem;
+      font-weight: 800;
+      opacity: 0.78;
+    }
+
+    .project-id h3 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+    }
+
+    .project-period {
+      font-size: 0.9rem;
+      opacity: 0.78;
+    }
+
+    .project-summary {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-type {
+      color: var(--primary);
+      font-size: 0.86rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .project-summary h4 {
+      font-size: clamp(1.55rem, 3vw, 2.35rem);
+      line-height: 1.25;
+      letter-spacing: -0.035em;
+      margin-bottom: 18px;
+    }
+
+    .project-summary p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #44506a;
+    }
+
+    .project-body {
+      padding: 38px;
+      display: grid;
+      gap: 34px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .feature-box {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 25px;
+      background: #fbfcfe;
+    }
+
+    .feature-box h5 {
+      color: var(--primary);
+      font-size: 0.83rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-box h6 {
+      font-size: 1.08rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-box p,
+    .feature-box li {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .feature-box ul {
+      padding-left: 18px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .problem-solution {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .ps-card {
+      border-radius: var(--radius-md);
+      padding: 26px;
+    }
+
+    .ps-card.problem {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+    }
+
+    .ps-card.solution {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+    }
+
+    .ps-label {
+      font-size: 0.78rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .problem .ps-label {
+      color: #c2410c;
+    }
+
+    .solution .ps-label {
+      color: #1d4ed8;
+    }
+
+    .ps-card h6 {
+      font-size: 1.08rem;
+      margin-bottom: 10px;
+    }
+
+    .ps-card p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .flow-step {
+      text-align: center;
+      padding: 18px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-soft);
+      border: 1px solid var(--line);
+      font-size: 0.85rem;
+      font-weight: 900;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+    }
+
+    .growth-line {
+      position: relative;
+      display: grid;
+      gap: 22px;
+      margin-left: 24px;
+    }
+
+    .growth-line::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--line);
+    }
+
+    .growth-item {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 22px;
+      position: relative;
+    }
+
+    .growth-dot {
+      width: 18px;
+      height: 18px;
+      border: 4px solid var(--bg);
+      border-radius: 50%;
+      background: var(--primary);
+      z-index: 1;
+    }
+
+    .growth-content {
+      padding-bottom: 12px;
+    }
+
+    .growth-content span {
+      color: var(--primary);
+      font-weight: 900;
+      font-size: 0.85rem;
+    }
+
+    .growth-content h3 {
+      font-size: 1.35rem;
+      margin: 5px 0 8px;
+    }
+
+    .growth-content p {
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .skill-group h3 {
+      font-size: 1rem;
+      margin-bottom: 16px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-list span {
+      background: var(--surface-soft);
+      border-radius: 8px;
+      padding: 7px 10px;
+      color: #4b5568;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .closing {
+      padding: 110px 0;
+    }
+
+    .closing-card {
+      background: #172033;
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: clamp(34px, 6vw, 70px);
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 40px;
+      align-items: end;
+      box-shadow: var(--shadow);
+    }
+
+    .closing-card h2 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1.16;
+      letter-spacing: -0.045em;
+      margin-bottom: 20px;
+    }
+
+    .closing-card p {
+      color: rgba(255, 255, 255, 0.68);
+      max-width: 740px;
+    }
+
+    .contact-box {
+      display: grid;
+      gap: 10px;
+      justify-items: start;
+    }
+
+    .contact-box a,
+    .contact-box span {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 28px 0 42px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 920px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .project-top,
+      .closing-card {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .strength-grid,
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .project-id {
+        min-height: 210px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(calc(100% - 24px), var(--max-width));
+      }
+
+      .hero {
+        padding-top: 62px;
+      }
+
+      .section {
+        padding: 78px 0;
+      }
+
+      .strength-grid,
+      .skills-grid,
+      .feature-grid,
+      .problem-solution {
+        grid-template-columns: 1fr;
+      }
+
+      .project-top,
+      .project-body {
+        padding: 22px;
+      }
+
+      .profile-row {
+        grid-template-columns: 78px 1fr;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      .nav,
+      .hero-actions {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .section,
+      .closing {
+        padding: 48px 0;
+      }
+
+      .project,
+      .strength-card,
+      .skill-group,
+      .closing-card {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">JEONGHWAN<span>.DEV</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#growth">Growth</a>
+        <a href="#skills">Skills</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">FULL-STACK DEVELOPER INTERN</div>
+          <h1>
+            끝까지 원인을 파고들어,<br />
+            <strong>동작하는 결과</strong>로 해결합니다.
+          </h1>
+          <p class="hero-copy">
+            Flutter와 Firebase로 시작해 React와 Spring Boot 기반 풀스택 개발,
+            AWS 배포, 크롤링 안정화, 알림 동시성 문제 해결까지 경험했습니다.
+            최근에는 AI 에이전트를 단순한 코드 생성기가 아니라
+            <b>계획·개발·검증·평가가 반복되는 개발 시스템</b> 안에서 활용하고 있습니다.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">프로젝트 보기</a>
+            <a class="button" href="#skills">기술 스택 보기</a>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <div class="profile-label">Profile</div>
+          <div class="profile-name">이정환</div>
+          <div class="profile-list">
+            <div class="profile-row">
+              <span>전공</span>
+              <strong>소프트웨어학과</strong>
+            </div>
+            <div class="profile-row">
+              <span>복수전공</span>
+              <strong>미래자동차 연계전공</strong>
+            </div>
+            <div class="profile-row">
+              <span>학적</span>
+              <strong>4학년 1학기 재학</strong>
+            </div>
+            <div class="profile-row">
+              <span>졸업 예정</span>
+              <strong>2027년 2월</strong>
+            </div>
+            <div class="profile-row">
+              <span>희망 직무</span>
+              <strong>풀스택 개발자 인턴</strong>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section alt" id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">CORE STRENGTHS</div>
+          <h2>기능 구현을 넘어,<br />문제의 원인과 개발 과정까지 설계합니다.</h2>
+        </div>
+
+        <div class="strength-grid">
+          <article class="strength-card">
+            <div class="strength-number">01</div>
+            <h3>풀스택 구현 경험</h3>
+            <p>
+              Flutter·Firebase 모바일 앱부터 React·Spring Boot 웹 서비스까지
+              화면, 상태 관리, API, 데이터베이스를 직접 연결했습니다.
+            </p>
+          </article>
+          <article class="strength-card">
+            <div class="strength-number">02</div>
+            <h3>구조적인 문제 해결</h3>
+            <p>
+              쇼핑몰별 딥링크와 크롤링 차단 문제를 URL 정규화 계층으로 분리하고,
+              알림 중복 문제를 데이터베이스 원자적 선점 방식으로 해결했습니다.
+            </p>
+          </article>
+          <article class="strength-card">
+            <div class="strength-number">03</div>
+            <h3>통제 가능한 AI 활용</h3>
+            <p>
+              AI 에이전트가 요청 범위를 벗어나는 문제를 계획, 개발, 검증,
+              평가 루프로 통제하고 사람이 최종 판단하는 개발 방식을 구성했습니다.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">SELECTED PROJECTS</div>
+          <h2>경험의 최신성과 직무 연관성을 기준으로<br />세 프로젝트를 구성했습니다.</h2>
+        </div>
+
+        <div class="project-list">
+          <article class="project">
+            <div class="project-top">
+              <div class="project-id">
+                <div class="project-index">PROJECT 01 · PERSONAL</div>
+                <h3>ChaekList</h3>
+                <div class="project-period">2026.04 — 2026.05</div>
+              </div>
+
+              <div class="project-summary">
+                <div class="project-type">대표 프로젝트 · 시연 가능</div>
+                <h4>에이전틱 엔지니어링을 적용한 교양서 추천 및 독서 성장 서비스</h4>
+                <p>
+                  사용자의 관심 분야, 독서 목적, 읽은 책과 저장한 책을 바탕으로
+                  지금 읽기 좋은 교양서를 추천하고, 독서 기록과 성장 상태를 관리하는
+                  풀스택 웹 애플리케이션입니다.
+                </p>
+                <div class="tags">
+                  <span class="tag">React 19</span>
+                  <span class="tag">Spring Boot 3.5</span>
+                  <span class="tag">Java 21</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">JPA</span>
+                  <span class="tag">Codex</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="feature-grid">
+                <div class="feature-box">
+                  <h5>MAIN FEATURES</h5>
+                  <h6>개인화된 독서 경험</h6>
+                  <ul>
+                    <li>관심 분야와 독서 목적 기반 추천</li>
+                    <li>읽은 책, 저장한 책, 관심 없는 책 관리</li>
+                    <li>독서 성장 점수와 대표 배지</li>
+                    <li>책·게시글·사용자 통합 검색</li>
+                  </ul>
+                </div>
+                <div class="feature-box">
+                  <h5>SERVICE POLICY</h5>
+                  <h6>공개와 비공개의 경계</h6>
+                  <ul>
+                    <li>사용자가 직접 공개한 활동만 피드에 노출</li>
+                    <li>공개 여부와 계정 상태를 백엔드에서 강제</li>
+                    <li>탈퇴·숨김·차단 정책을 검색과 피드에 공통 적용</li>
+                    <li>좋아요와 추천 히스토리의 멱등성 보장</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="problem-solution">
+                <div class="ps-card problem">
+                  <div class="ps-label">PROBLEM</div>
+                  <h6>AI 에이전트가 요청하지 않은 파일까지 수정</h6>
+                  <p>
+                    기능 구현 속도는 높았지만 작업 범위를 벗어난 변경과 기존 기능의
+                    회귀 오류가 발생해, 긴 프롬프트만으로는 안정적인 통제가 어려웠습니다.
+                  </p>
+                </div>
+                <div class="ps-card solution">
+                  <div class="ps-label">SOLUTION</div>
+                  <h6>계획·개발·검증·평가 하네스 루프</h6>
+                  <p>
+                    역할과 수정 범위를 분리하고, 프론트 빌드와 백엔드 테스트를 완료
+                    조건으로 명시했습니다. 검증에 실패하면 개발 단계로 돌아가도록 구성했습니다.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flow" aria-label="에이전틱 개발 루프">
+                <div class="flow-step">요구사항 분석</div>
+                <div class="flow-step">수정 범위 계획</div>
+                <div class="flow-step">프론트·백 개발</div>
+                <div class="flow-step">빌드·테스트</div>
+                <div class="flow-step">평가·재수정</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div class="project-id">
+                <div class="project-index">PROJECT 02 · TEAM</div>
+                <h3>냉잔고</h3>
+                <div class="project-period">2025.11 — 2026.02</div>
+              </div>
+
+              <div class="project-summary">
+                <div class="project-type">백엔드 담당 · 8인 협업</div>
+                <h4>크롤링 안정화와 알림 동시성 문제를 해결한 구매 지연 서비스</h4>
+                <p>
+                  사용자가 상품을 즉시 구매하지 않고 일정 시간 보류하도록 도와
+                  충동 구매를 줄이는 서비스입니다. 마이페이지, 쇼핑몰 크롤링,
+                  24시간 만료 알림과 배포 환경을 담당했습니다.
+                </p>
+                <div class="tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Spring Boot 3.x</span>
+                  <span class="tag">Spring Security</span>
+                  <span class="tag">JWT / OAuth2</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">Redis</span>
+                  <span class="tag">AWS EC2</span>
+                  <span class="tag">Docker</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="feature-grid">
+                <div class="feature-box">
+                  <h5>MY RESPONSIBILITIES</h5>
+                  <h6>백엔드 기능 구현</h6>
+                  <ul>
+                    <li>마이페이지 CRUD API</li>
+                    <li>쇼핑몰 상품 정보 크롤링</li>
+                    <li>24시간 후 냉동 만료 알림 생성</li>
+                    <li>알림 목록·미열람 수·읽음 처리 API</li>
+                  </ul>
+                </div>
+                <div class="feature-box">
+                  <h5>INFRASTRUCTURE</h5>
+                  <h6>배포 및 인증 환경</h6>
+                  <ul>
+                    <li>AWS EC2, Docker, Nginx, Certbot</li>
+                    <li>GitHub Actions 기반 배포</li>
+                    <li>Spring Security, JWT, Google OAuth2</li>
+                    <li>Redis 기반 Refresh Token 관리</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="problem-solution">
+                <div class="ps-card problem">
+                  <div class="ps-label">CRAWLING PROBLEM</div>
+                  <h6>쇼핑몰마다 다른 딥링크와 접근 정책</h6>
+                  <p>
+                    OneLink, Airbridge, App Link가 실제 상품 페이지가 아닌 중간 페이지로
+                    연결됐고, 올리브영 모바일 페이지에서는 차단 화면이 반환됐습니다.
+                  </p>
+                </div>
+                <div class="ps-card solution">
+                  <div class="ps-label">CRAWLING SOLUTION</div>
+                  <h6>UrlResolver와 실패 격리</h6>
+                  <p>
+                    링크 유형 식별, 리디렉션 추적, PC 상세 페이지 정규화를 별도 계층으로
+                    분리했습니다. 실패 시 서버 500 대신 title과 price를 null로 반환했습니다.
+                  </p>
+                </div>
+              </div>
+
+              <div class="problem-solution">
+                <div class="ps-card problem">
+                  <div class="ps-label">CONCURRENCY PROBLEM</div>
+                  <h6>동일 만료 대상의 중복 알림 생성</h6>
+                  <p>
+                    여러 실행 흐름이 notified=false 상태를 동시에 조회한 뒤 각각
+                    알림을 생성하는 경쟁 상태가 발생했습니다.
+                  </p>
+                </div>
+                <div class="ps-card solution">
+                  <div class="ps-label">CONCURRENCY SOLUTION</div>
+                  <h6>DB 조건부 갱신을 통한 원자적 선점</h6>
+                  <p>
+                    claimNotified()가 상태 변경에 성공한 실행만 알림을 만들도록 구성하고,
+                    clearAutomatically와 flushAutomatically로 영속성 컨텍스트를 동기화했습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-top">
+              <div class="project-id">
+                <div class="project-index">PROJECT 03 · PERSONAL</div>
+                <h3>EcoCycle</h3>
+                <div class="project-period">2024.07 — 2024.08</div>
+              </div>
+
+              <div class="project-summary">
+                <div class="project-type">첫 모바일 풀스택 프로젝트</div>
+                <h4>Flutter와 Firebase로 구현한 음식 위치 공유 및 중개 앱</h4>
+                <p>
+                  음식 정보와 위치를 등록하고, Firestore의 데이터를 목록과 Google Map
+                  마커로 동시에 확인할 수 있도록 만든 개인 프로젝트입니다.
+                </p>
+                <div class="tags">
+                  <span class="tag">Flutter</span>
+                  <span class="tag">Dart</span>
+                  <span class="tag">Cloud Firestore</span>
+                  <span class="tag">Provider</span>
+                  <span class="tag">Google Maps</span>
+                  <span class="tag">Geolocator</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-body">
+              <div class="feature-grid">
+                <div class="feature-box">
+                  <h5>FUNCTIONS</h5>
+                  <h6>음식 데이터와 위치 관리</h6>
+                  <ul>
+                    <li>Firestore foods 컬렉션 조회</li>
+                    <li>음식 이름, 가격, 설명, 좌표 등록</li>
+                    <li>홈 화면에서 목록과 지도 마커 동시 표시</li>
+                    <li>현재 위치 권한 요청과 좌표 저장</li>
+                  </ul>
+                </div>
+                <div class="feature-box">
+                  <h5>LEARNING</h5>
+                  <h6>서비스 전체 흐름의 첫 경험</h6>
+                  <ul>
+                    <li>Provider를 통한 목록과 지도 상태 동기화</li>
+                    <li>Firebase 데이터 저장과 조회</li>
+                    <li>Android·iOS 지도 및 위치 권한 설정</li>
+                    <li>AI 생성 코드를 직접 검증하고 수정한 경험</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="problem-solution">
+                <div class="ps-card problem">
+                  <div class="ps-label">CHALLENGE</div>
+                  <h6>목록과 지도에서 서로 다른 상태가 보일 가능성</h6>
+                  <p>
+                    화면마다 Firestore를 개별 조회하면 중복 요청이 발생하고,
+                    새로 등록된 음식이 일부 화면에만 반영될 수 있었습니다.
+                  </p>
+                </div>
+                <div class="ps-card solution">
+                  <div class="ps-label">APPROACH</div>
+                  <h6>Provider 기반 공통 상태 관리</h6>
+                  <p>
+                    Firestore에서 불러온 하나의 음식 목록 상태를 목록 화면과 지도 마커가
+                    함께 사용하도록 구성해 동일한 데이터를 표시하도록 했습니다.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="growth">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">GROWTH JOURNEY</div>
+          <h2>프로젝트마다 더 넓은 범위의 문제를<br />직접 해결해 왔습니다.</h2>
+        </div>
+
+        <div class="growth-line">
+          <article class="growth-item">
+            <div class="growth-dot"></div>
+            <div class="growth-content">
+              <span>2024 · EcoCycle</span>
+              <h3>기능을 연결하는 개발</h3>
+              <p>모바일 UI, 상태 관리, Firestore, 지도 API를 연결하며 서비스 전체 흐름을 처음 구현했습니다.</p>
+            </div>
+          </article>
+
+          <article class="growth-item">
+            <div class="growth-dot"></div>
+            <div class="growth-content">
+              <span>2025—2026 · 냉잔고</span>
+              <h3>실패와 동시성을 다루는 개발</h3>
+              <p>외부 쇼핑몰 정책과 알림 경쟁 상태를 구조적으로 분석하고 운영 안정성을 높였습니다.</p>
+            </div>
+          </article>
+
+          <article class="growth-item">
+            <div class="growth-dot"></div>
+            <div class="growth-content">
+              <span>2026 · ChaekList</span>
+              <h3>개발 과정 자체를 설계하는 개발</h3>
+              <p>AI 에이전트의 생산성과 개발자의 검증 책임을 결합한 반복 가능한 개발 루프를 구성했습니다.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">TECHNICAL SKILLS</div>
+          <h2>프로젝트에서 직접 사용한 기술을<br />역할별로 정리했습니다.</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Frontend</h3>
+            <div class="skill-list">
+              <span>React</span>
+              <span>React Router</span>
+              <span>Vite</span>
+              <span>Tailwind CSS</span>
+              <span>Flutter</span>
+              <span>Dart</span>
+              <span>Provider</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Backend</h3>
+            <div class="skill-list">
+              <span>Java 21</span>
+              <span>Spring Boot</span>
+              <span>Spring Security</span>
+              <span>Spring Data JPA</span>
+              <span>Hibernate</span>
+              <span>REST API</span>
+              <span>Scheduler</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Data & Auth</h3>
+            <div class="skill-list">
+              <span>MySQL</span>
+              <span>Redis</span>
+              <span>Firestore</span>
+              <span>H2</span>
+              <span>JWT</span>
+              <span>OAuth2</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h3>Infra & Tools</h3>
+            <div class="skill-list">
+              <span>AWS EC2</span>
+              <span>Docker</span>
+              <span>Nginx</span>
+              <span>Certbot</span>
+              <span>GitHub Actions</span>
+              <span>Swagger</span>
+              <span>Codex</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="container">
+        <div class="closing-card">
+          <div>
+            <h2>문제를 끝까지 추적하고,<br />더 안정적인 구조로 남깁니다.</h2>
+            <p>
+              새로운 기술을 빠르게 적용하는 것에 그치지 않고, 실패 원인을 이해하고
+              다시 발생하지 않는 구조를 만드는 풀스택 개발자로 성장하고 있습니다.
+            </p>
+          </div>
+          <div class="contact-box">
+            <span>GitHub · https://github.com/ljh8450</span>
+            <span>Email · ljh8450@ajou.ac.kr</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 Lee Jeonghwan. Full-Stack Developer Portfolio.
+  </footer>
+</body>
+</html>
