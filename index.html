@@ -777,7 +777,245 @@
         break-inside: avoid;
       }
     }
+  
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    @media print {
+      html, body {
+        width: 210mm;
+        background: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body {
+        font-size: 10.5pt;
+        line-height: 1.55;
+      }
+
+      .container {
+        width: 100%;
+        max-width: none;
+      }
+
+      .nav, .hero-actions { display: none !important; }
+
+      .hero {
+        min-height: 0;
+        padding: 12mm 0 10mm;
+        break-after: page;
+      }
+
+      .hero h1 { font-size: 34pt; }
+      .hero-copy { font-size: 11pt; }
+
+      .section, .closing {
+        padding: 10mm 0;
+      }
+
+      #about, #experience, #projects, #growth, #skills, .closing {
+        break-before: page;
+      }
+
+      .section-heading {
+        margin-bottom: 7mm;
+        grid-template-columns: 42mm 1fr;
+        gap: 8mm;
+      }
+
+      .section-heading h2 { font-size: 25pt; }
+
+      .strength-card, .experience-card, .project, .skill-group, .closing-card {
+        box-shadow: none !important;
+      }
+
+      .strength-card, .experience-card, .project-top, .project-body,
+      .feature-box, .ps-card, .skill-group {
+        break-inside: avoid;
+      }
+
+      .project {
+        break-before: page;
+        border-radius: 14px;
+      }
+
+      .project:first-child { break-before: auto; }
+
+      .project-top { padding: 9mm; }
+      .project-body { padding: 9mm; gap: 6mm; }
+      .project-id { min-height: 58mm; padding: 7mm; }
+      .experience-card { padding: 9mm; }
+      .experience-meta { min-height: 65mm; padding: 7mm; }
+      .feature-box, .ps-card { padding: 6mm; }
+      .flow-step { padding: 4mm 2mm; }
+      .closing-card { padding: 12mm; }
+
+      a { text-decoration: none; }
+    }
+
   </style>
+
+
+  <style id="stable-print-pagination">
+    @page { size: A4; margin: 12mm; }
+
+    @media print {
+      html, body {
+        width: auto !important;
+        min-width: 0 !important;
+        background: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      body { font-size: 10pt; line-height: 1.5; }
+      .container { width: 100% !important; max-width: none !important; }
+      .nav, .hero-actions { display: none !important; }
+
+      /* Major sections begin predictably. */
+      .hero { min-height: 0 !important; padding: 10mm 0 8mm !important; break-after: page; }
+      #about, #experience, #projects, #growth, #skills, .closing { break-before: page; }
+
+      /* Keep each section title with the first content block. */
+      .section-heading { break-after: avoid-page; margin-bottom: 6mm !important; }
+      .section-kicker, h1, h2, h3, h4, h5, h6 { break-after: avoid-page; }
+
+      /* A project may span pages; only meaningful sub-blocks stay together. */
+      .project { break-inside: auto !important; box-shadow: none !important; }
+      .project + .project { break-before: page; }
+      .project-top { break-inside: avoid-page !important; }
+      .project-body { break-inside: auto !important; }
+      .feature-grid, .problem-solution, .flow { break-inside: avoid-page !important; }
+      .feature-box, .ps-card { break-inside: avoid-page !important; }
+
+      /* Compact fixed-size sections so they reliably fit one page. */
+      #about .strength-grid,
+      #experience .experience-card,
+      #growth .growth-line,
+      #skills .skills-grid,
+      .closing-card { break-inside: avoid-page !important; }
+
+      .section, .closing { padding: 8mm 0 !important; }
+      .hero h1 { font-size: 31pt !important; }
+      .hero-copy { font-size: 10.5pt !important; }
+      .section-heading { grid-template-columns: 38mm 1fr !important; gap: 7mm !important; }
+      .section-heading h2 { font-size: 22pt !important; }
+
+      .strength-card { min-height: 0 !important; padding: 5mm !important; }
+      .strength-number { margin-bottom: 8mm !important; }
+      .experience-card { padding: 7mm !important; }
+      .experience-meta { min-height: 58mm !important; padding: 6mm !important; }
+      .experience-highlight { padding: 4.5mm !important; }
+
+      .project-top { padding: 7mm !important; gap: 7mm !important; }
+      .project-body { padding: 7mm !important; gap: 5mm !important; }
+      .project-id { min-height: 51mm !important; padding: 6mm !important; }
+      .feature-box, .ps-card { padding: 5mm !important; }
+      .flow-step { padding: 3.5mm 1.5mm !important; }
+      .tags { gap: 1.5mm !important; }
+      .tag { padding: 1.3mm 2.5mm !important; }
+
+      .growth-line { gap: 4mm !important; }
+      .growth-content { padding-bottom: 2mm !important; }
+      .skills-grid { gap: 4mm !important; }
+      .skill-group { padding: 5mm !important; }
+      .closing-card { padding: 10mm !important; }
+
+      p, li { orphans: 3; widows: 3; }
+      a { text-decoration: none !important; }
+    }
+  </style>
+
+
+<style id="project-page-boundaries">
+@media print {
+  /* CSS Grid fragmentation is inconsistent across print engines. */
+  .project-list { display: block !important; }
+  .project { display: block !important; margin: 0 !important; }
+  .project + .project { break-before: page !important; page-break-before: always !important; }
+
+  /* Compact project pages without splitting individual comparison rows. */
+  #projects .project-top { padding: 6mm !important; gap: 6mm !important; }
+  #projects .project-body { padding: 6mm !important; gap: 4mm !important; }
+  #projects .project-id { min-height: 46mm !important; padding: 5mm !important; }
+  #projects .feature-box,
+  #projects .ps-card { padding: 4mm !important; }
+  #projects .feature-box p,
+  #projects .feature-box li,
+  #projects .ps-card p { font-size: 8.5pt !important; line-height: 1.4 !important; }
+  #projects .feature-box h6,
+  #projects .ps-card h6 { font-size: 10pt !important; margin-bottom: 2mm !important; }
+  #projects .project-summary p { font-size: 9pt !important; line-height: 1.45 !important; margin-bottom: 3mm !important; }
+  #projects .project-summary h4 { font-size: 19pt !important; margin-bottom: 3mm !important; }
+  #projects .project-id h3 { font-size: 25pt !important; }
+  #projects .flow-step { font-size: 8pt !important; padding: 3mm 1mm !important; }
+}
+</style>
+
+
+<style id="preserve-layout-combine-last-page">
+@media print {
+  /* Keep the original visual proportions. Only remove the forced page break. */
+  #skills { padding-bottom: 0 !important; }
+  #skills .skills-grid { grid-template-columns: repeat(4, 1fr) !important; }
+  .closing-card { grid-template-columns: 1.3fr 0.7fr !important; }
+  .closing {
+    break-before: auto !important;
+    page-break-before: auto !important;
+    padding: 5mm 0 0 !important;
+  }
+  .closing-card {
+    break-inside: avoid-page !important;
+    padding: 10mm !important;
+  }
+  footer {
+    break-before: avoid-page !important;
+    padding: 3mm 0 0 !important;
+  }
+}
+</style>
+
+
+<style id="restore-original-title-typography">
+@media print {
+  /* Restore the stronger title hierarchy from the original design. */
+  .hero h1 {
+    font-size: 34pt !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.055em !important;
+    font-weight: 900 !important;
+  }
+  .section-heading h2 {
+    font-size: 25pt !important;
+    line-height: 1.13 !important;
+    letter-spacing: -0.045em !important;
+    font-weight: 900 !important;
+  }
+  .experience-meta h3,
+  #projects .project-id h3 {
+    font-size: 27pt !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.045em !important;
+    font-weight: 900 !important;
+  }
+  #projects .project-summary h4 {
+    font-size: 20pt !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.035em !important;
+    font-weight: 900 !important;
+  }
+  .closing-card h2 {
+    font-size: 27pt !important;
+    line-height: 1.16 !important;
+    letter-spacing: -0.045em !important;
+    font-weight: 900 !important;
+  }
+}
+</style>
+
 </head>
 <body>
   <nav class="nav">
@@ -841,7 +1079,7 @@
             </div>
             <div class="profile-row">
               <span>희망 직무</span>
-              <strong>풀스택 개발자 인턴</strong>
+              <strong>풀스택 엔지니어 인턴</strong>
             </div>
           </div>
         </aside>
